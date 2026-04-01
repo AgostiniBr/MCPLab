@@ -1,10 +1,43 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <title>MCPLab - Consulta de Clima</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+
+        #answer {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
 
+    <h2>Consulta de Clima (via MCP)</h2>
+
+    <input id="question" type="text" placeholder="Digite sua pergunta..." style="width: 400px;">
+    <button onclick="ask()">Enviar</button>
+
+    <div id="answer"></div>
+
+    <script>
+    async function ask() {
+            const q = document.getElementById("question").value;
+
+            const res = await fetch("http://localhost:5044/api/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question: q })
+            });
+
+            const data = await res.json();
+            document.getElementById("answer").innerText = data.answer;
+    }
+    </script>
 </body>
 </html>
