@@ -1,8 +1,11 @@
 using MCPLab.McpServer.Services;
 
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+#region BUILDER CONSTRUCT
+var builder = WebApplication.CreateBuilder(args); 
+#endregion
 
+#region APP CONSTRUCT
+var app = builder.Build();
 app.MapPost("/tools/route-weather", async (WeatherQuestion input) =>
 {
     var question = input.Question ?? "";
@@ -18,9 +21,16 @@ app.MapPost("/tools/route-weather", async (WeatherQuestion input) =>
         return await WeatherTools.GetWind(question);
     }
 
+    if (question.Contains("hoje", StringComparison.OrdinalIgnoreCase))
+    {
+        return await WeatherTools.GetCurrentWeather(question);
+    }
+
     return await WeatherTools.GetCurrentWeather(question);
 });
+app.Run("http://localhost:5050"); 
+#endregion
 
-app.Run("http://localhost:5050");
-
-record WeatherQuestion(string Question);
+#region INTERNAL METHOD
+record WeatherQuestion(string Question); 
+#endregion

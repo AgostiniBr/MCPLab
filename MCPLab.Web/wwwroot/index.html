@@ -3,41 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>MCPLab - Consulta de Clima</title>
-    <style>
-        body {
-            font-family: Arial;
-            margin: 40px;
-        }
-
-        #answer {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
-
-    <h2>Consulta de Clima (via MCP)</h2>
-
-    <input id="question" type="text" placeholder="Digite sua pergunta..." style="width: 400px;">
-    <button onclick="ask()">Enviar</button>
-
-    <div id="answer"></div>
-
-    <script>
-    async function ask() {
-            const q = document.getElementById("question").value;
-
-            const res = await fetch("http://localhost:5044/api/ask", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question: q })
-            });
-
-            const data = await res.json();
-            document.getElementById("answer").innerText = data.answer;
-    }
-    </script>
+<body class="dark">
+    <!-- -->
+    <header>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <h1>MCPLab - Consulta de Clima</h1>
+            <!-- -->
+            <div class="theme-toggle" style="margin: 0em 0em 0em 3em">
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitcher">
+                    <span class="slider"></span>
+                </label>
+                <!-- -->
+                <i id="themeIcon" class="fa-solid fa-moon" style="vertical-align: text-top"></i>
+            </div>
+        </div>
+    </header>
+    <!-- -->
+    <main>
+        <div class="card">
+            <div class="sphere-container">
+                <div id="sphere"></div>
+            </div>
+            <!-- -->
+            <label>Cidade:</label>
+            <!-- -->
+            <select id="DdlCity">
+                <option value="São Paulo">São Paulo</option>
+                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                <option value="Lisboa">Lisboa</option>
+                <option value="Nova York">Nova York</option>
+            </select>
+            <!-- -->
+            <label>Pergunta:</label>
+            <!-- -->
+            <input id="question" type="text" autocomplete="off" placeholder="Digite sua pergunta...">
+            <label>*clima hoje, clima amanhã, vento</label>
+            <!-- -->
+            <button id="btnAsk">Enviar</button>
+            <!-- -->
+            <div id="loading" class="loading hidden"></div>
+            <!-- -->
+            <div id="answer" class="answer-box"></div>
+        </div>
+    </main>
+    <!-- -->
+    <script src="script.js"></script>
 </body>
 </html>
