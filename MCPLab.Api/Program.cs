@@ -1,7 +1,18 @@
+using MCPLab.Api.Services;
 
-#region BUILDER CONSTRUCT
+//--> Init Builder
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHttpClient<McpClient>();
+
+//--> Dependency Injection
+//builder.Services.AddHttpClient<McpClient>();
+
+//--> Dependency Injection
+builder.Services.AddHttpClient<McpClientOllama>(c =>
+{
+    c.BaseAddress = new Uri("http://localhost:5005"); // Porta do MCP-like Server
+});
+
+//--> Add CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowWeb",
@@ -13,18 +24,27 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader();
         });
 });
-#endregion
 
-#region APP CONSTRUCT
+//--> Instance app
 var app = builder.Build();
 app.UseCors("AllowWeb");
-app.MapPost("/api/ask", async (AskRequest req, McpClient mcp) =>
+
+//--> Endpoint MCP interno
+//app.MapPost("/api/ask", async (AskRequest req, McpClient mcp) =>
+//{
+//    var answer = await mcp.CallToolAsync("route-weather", req.Question);
+//    return new { answer };
+//});
+
+//--> Endpoint MCP Ollama
+app.MapPost("/api/mcp/weather", async (AskRequest req, McpClientOllama mcp) =>
 {
-    var answer = await mcp.CallToolAsync("route-weather", req.Question);
+    var answer = await mcp.CallWeatherAsync(req.Question);
     return new { answer };
 });
+
+//--> Run app
 app.Run();
-#endregion
 
 #region INTERNAL METHOD
 record AskRequest(string Question); 

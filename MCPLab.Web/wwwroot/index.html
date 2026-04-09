@@ -51,6 +51,11 @@
         </div>
     </main>
     <!-- -->
-    <script src="script.js"></script>
+    <script>
+        const ts = Date.now();
+        const script = document.createElement("script");
+        script.src = "script.js?v=" + ts;
+        document.head.appendChild(script);
+    </script>
 </body>
 </html>

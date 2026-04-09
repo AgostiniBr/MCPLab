@@ -1,0 +1,6 @@
+@MCPLab.McpServer.Ollama_HostAddress = http://localhost:5074
+
+GET {{MCPLab.McpServer.Ollama_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

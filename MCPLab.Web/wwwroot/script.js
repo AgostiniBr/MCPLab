@@ -3,17 +3,44 @@
 // ------------------------------
 document.getElementById("btnAsk").addEventListener("click", ask);
 async function ask() {
-    const c = document.getElementById("DdlCity").value;
-    const q = document.getElementById("question").value;
+    //const url = "http://localhost:5044/api/ask";
+    const myurl = "http://localhost:5044/api/mcp/weather";
+    const mycity = document.getElementById("DdlCity").value;
+    const myquestion = document.getElementById("question").value;
+    //--//
+    const loading = document.getElementById("loading");
+    const answer = document.getElementById("answer");
+    //--//
+    loading.classList.add("show");
+    answer.innerText = "";
 
-    const res = await fetch("http://localhost:5044/api/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: c + "-" + q })
-    });
+    //#region Chamar a API sem MCP - Ollama
+    //if (myquestion !== '' && mycity !== '') {
+    //const res = await fetch(myurl, {
+    //    method: "POST",
+    //    headers: { "Content-Type": "application/json" },
+    //    body: JSON.stringify({ question: mycity + "-" + myquestion })
+    //});
+    //--//
+    //const data = await res.json();
+    //document.getElementById("answer").innerText = data.answer;
+    //}
+    //#endregion
 
-    const data = await res.json();
-    document.getElementById("answer").innerText = data.answer;
+    //#region Chamar a API com MCP - Ollama
+    if (myquestion !== '') {
+        const res = await fetch(myurl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question: myquestion })
+        });
+        //--//
+        const data = await res.json();
+        document.getElementById("answer").innerText = data.answer;
+    }
+    //#endregion
+
+    loading.classList.add("hidden");
 }
 
 // ------------------------------
@@ -35,30 +62,6 @@ themeSwitcher.addEventListener("change", () => {
     }
 });
 
-// ------------------------------
-// Loading
-// ------------------------------
-async function ask() {
-    const loading = document.getElementById("loading");
-    const answer = document.getElementById("answer");
-
-    loading.classList.remove("hidden");
-    answer.innerText = "";
-
-    const c = document.getElementById("DdlCity").value;
-    const q = document.getElementById("question").value;
-
-    const res = await fetch("http://localhost:5044/api/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: c + "-" + q })
-    });
-
-    const data = await res.json();
-
-    loading.classList.add("hidden");
-    answer.innerText = data.answer;
-}
 
 // ------------------------------
 // Esfera 3D de palavras
