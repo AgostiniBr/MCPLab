@@ -1,5 +1,5 @@
 // ------------------------------
-// ETAPA 4 
+// ETAPA 4 (enviar para o Endpoint MCP-like usando o protocolo JSON-RPC)
 // ETAPA 5 IR PARA O ARQUIVO -> MCPLab.Api.Services.Ollama.Tools.ToolRegistry.cs
 // ------------------------------
 
@@ -15,6 +15,9 @@ builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<OllamaClient>();
 builder.Services.AddSingleton<ToolRegistry>();
 builder.Services.AddSingleton<MCPLab.McpServer.Ollama.Tools.WeatherTool>();
+builder.Services.AddSingleton<MCPLab.McpServer.Ollama.Tools.GeneralTool>();
+builder.Services.AddSingleton<MCPLab.McpServer.Ollama.Tools.DeveloperTool>();
+
 
 //--> Instance app
 var app = builder.Build();

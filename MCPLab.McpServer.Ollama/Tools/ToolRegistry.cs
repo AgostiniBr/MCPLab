@@ -1,5 +1,5 @@
 ﻿// ------------------------------
-// ETAPA 5 -> Cria o Registro de ferramentas, e métodos para a chamada do MCP
+// ETAPA 5 (Cria o Registro de ferramentas, e métodos para a chamada do MCP)
 // ETAPA 6 IR PARA O ARQUIVO -> MCPLab.Api.Services.Ollama.Tools.WeatherTool.cs
 // ------------------------------
 
@@ -19,7 +19,8 @@ namespace MCPLab.McpServer.Ollama.Tools
         {
             _services = services;
 
-            // Registrar automaticamente todas as tools
+            //--> Registrar automaticamente todas as classes do tipo Tools
+            //--> WeatherTool, GeneralTool, DeveloperTool
             var toolTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.GetCustomAttribute<McpToolAttribute>() != null);
@@ -37,16 +38,31 @@ namespace MCPLab.McpServer.Ollama.Tools
         {
             try
             {
+                //--> Verificar se os métodos das classes tipo Tools estão intanciados pela DI
                 if (!_tools.TryGetValue(req.Method, out var method)) { return RpcResponse.Error(req.Id, "Método não encontrado"); }
 
+                //--> Instanciar o Servico para saber qual classe do tipo Tool foi solicitada
+                //--> O objeto tool vai ser preenchido com a informação que deve usar as possíveis classes do tipo Tool
+                //--> WeatherTool, GeneralTool, DeveloperTool
                 var toolType = method.DeclaringType!;
                 var tool = _services.GetRequiredService(toolType);
 
-                var param = req.Params?.GetProperty("question").GetString() ?? "";
+                //--> Obtem o nome do parâmetro automaticamente
+                //--> parâmetro como question, input, text
+                var parameters = method.GetParameters();
+                var paramName = parameters[0].Name;
+                var paramValue = req.Params?
+                    .GetProperty(paramName)
+                    .GetString() ?? "";
 
-                var task = (Task<string>)method.Invoke(tool, new object[] { param, CancellationToken.None })!;
+                //--> Invoca o Método que foi obtido através da solicitação da classe tipo Tool
+                //--> Passa juntamente o parâmetro que deve ser usado nessa classe do tipo Tool
+                var task = (Task<string>)method.Invoke(tool, new object[] { paramValue, CancellationToken.None })!;
+
+                //--> Preenche o objeto result
                 var result = await task;
 
+                //--> Retorna o objeto result
                 return RpcResponse.Success(req.Id, result);
             }
             catch (Exception Ex) { return RpcResponse.Error(req.Id, Ex.Message); }

@@ -10,16 +10,15 @@
     <!-- -->
     <header>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <h1>MCPLab - Consulta de Clima</h1>
-            <!-- -->
-            <div class="theme-toggle" style="margin: 0em 0em 0em 3em">
+            <h1>MCPLab - Exemplo Básico</h1>
+             
+            <!--<div class="theme-toggle" style="margin: 0em 0em 0em 3em">
                 <label class="switch">
                     <input type="checkbox" id="themeSwitcher">
                     <span class="slider"></span>
                 </label>
-                <!-- -->
                 <i id="themeIcon" class="fa-solid fa-moon" style="vertical-align: text-top"></i>
-            </div>
+            </div>-->
         </div>
     </header>
     <!-- -->
@@ -28,20 +27,20 @@
             <div class="sphere-container">
                 <div id="sphere"></div>
             </div>
+            <!-- Descomentar se não for usar o agente Ollama -->
+            <!--<label>Cidade:</label>-->
             <!-- -->
-            <label>Cidade:</label>
-            <!-- -->
-            <select id="DdlCity">
-                <option value="São Paulo">São Paulo</option>
-                <option value="Rio de Janeiro">Rio de Janeiro</option>
-                <option value="Lisboa">Lisboa</option>
-                <option value="Nova York">Nova York</option>
-            </select>
+            <!--<select id="DdlCity">
+        <option value="São Paulo">São Paulo</option>
+        <option value="Rio de Janeiro">Rio de Janeiro</option>
+        <option value="Lisboa">Lisboa</option>
+        <option value="Nova York">Nova York</option>
+    </select>-->
             <!-- -->
             <label>Pergunta:</label>
             <!-- -->
             <input id="question" type="text" autocomplete="off" placeholder="Digite sua pergunta...">
-            <label>*clima hoje, clima amanhã, vento</label>
+            <label>pergunte sobre o clima, c# ou locais</label>
             <!-- -->
             <button id="btnAsk">Enviar</button>
             <!-- -->

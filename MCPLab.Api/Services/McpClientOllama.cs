@@ -31,15 +31,15 @@ namespace MCPLab.Api.Services
             _http = http;
         }
 
-        //--> Method Call Weather Async
-        public async Task<string> CallWeatherAsync(string question)
+        //--> Method Call Agent AI Async
+        public async Task<string> CallAgentAIAsync(string _method, string question)
         {
             try
             {
                 var rpcRequest = new
                 {
                     jsonrpc = "2.0",
-                    method = "weather",
+                    method = _method,
                     @params = new { question },
                     id = Guid.NewGuid().ToString()
                 };

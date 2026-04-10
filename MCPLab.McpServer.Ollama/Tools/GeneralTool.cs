@@ -10,32 +10,32 @@ using System.ComponentModel;
 
 namespace MCPLab.McpServer.Ollama.Tools
 {
-    [McpTool("weather")]
-    public class WeatherTool
+    [McpTool("general")]
+    public class GeneralTool
     {
         //--> Dependency Injection
         private readonly IMemoryCache _cache;
         private readonly OllamaClient _ollama;
 
         //--> Constructor
-        public WeatherTool(IMemoryCache cache, OllamaClient ollama)
+        public GeneralTool(IMemoryCache cache, OllamaClient ollama)
         {
             _cache = cache;
             _ollama = ollama;
         }
 
-        //--> Method Invoke Async para perguntas sobre o clima
-        [Description("Responde perguntas sobre clima usando phi3 local e mantém cache.")]
+        //--> Method Invoke Async para perguntas gerais
+        [Description("Responde perguntas sobre informações gerais usando phi3 local e mantém cache.")]
         public async Task<string> InvokeAsync(
-            [Description("Pergunta completa do usuário.")]
-            string question, CancellationToken cancellationToken = default)
+            [Description("Pergunta completa do usuário.")] string question, 
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 if (_cache.TryGetValue(question, out string? cached)) { return cached; }
                 var prompt = $@"
-Você é um assistente de clima. 
-Responda sempre de forma consistente. 
+Você é um assistente de perguntas sobre temas gerais.
+Responda sempre de forma consistente.
 A sua resposta deve ser curta e direta.
 Pergunta: {question}
 ";

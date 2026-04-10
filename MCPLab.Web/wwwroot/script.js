@@ -8,13 +8,14 @@
 // ------------------------------
 document.getElementById("btnAsk").addEventListener("click", ask);
 async function ask() {
-    const mycity = document.getElementById("DdlCity").value;
+    /* Descomentar se não for usar o agente Ollama */
+    /*const mycity = document.getElementById("DdlCity").value;*/
     const myquestion = document.getElementById("question").value;
     //--//
     const loading = document.getElementById("loading");
     const answer = document.getElementById("answer");
     //--//
-    loading.classList.add("show");
+    loading.classList.remove("hidden");
     answer.innerText = "";
 
     //#region Chamar a API sem MCP - Ollama
@@ -33,7 +34,7 @@ async function ask() {
 
     //#region Chamar a API com MCP - Ollama
     if (myquestion !== '') {
-        const myurl = "http://localhost:5044/api/mcp/ollama/weather";
+        const myurl = "http://localhost:5044/api/mcp/ollama";
         const res = await fetch(myurl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -51,21 +52,21 @@ async function ask() {
 // ------------------------------
 // Tema claro/escuro
 // ------------------------------
-const themeSwitcher = document.getElementById("themeSwitcher");
-const themeIcon = document.getElementById("themeIcon");
-themeSwitcher.addEventListener("change", () => {
-    if (themeSwitcher.checked) {
-        document.body.classList.remove("dark");
-        document.body.classList.add("light");
-        themeIcon.classList.remove("fa-moon");
-        themeIcon.classList.add("fa-sun");
-    } else {
-        document.body.classList.remove("light");
-        document.body.classList.add("dark");
-        themeIcon.classList.remove("fa-sun");
-        themeIcon.classList.add("fa-moon");
-    }
-});
+//const themeSwitcher = document.getElementById("themeSwitcher");
+//const themeIcon = document.getElementById("themeIcon");
+//themeSwitcher.addEventListener("change", () => {
+//    if (themeSwitcher.checked) {
+//        document.body.classList.remove("dark");
+//        document.body.classList.add("light");
+//        themeIcon.classList.remove("fa-moon");
+//        themeIcon.classList.add("fa-sun");
+//    } else {
+//        document.body.classList.remove("light");
+//        document.body.classList.add("dark");
+//        themeIcon.classList.remove("fa-sun");
+//        themeIcon.classList.add("fa-moon");
+//    }
+//});
 
 
 // ------------------------------

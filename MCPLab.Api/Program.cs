@@ -50,9 +50,24 @@ app.UseCors("AllowWeb");
     - executa ferramentas dinamicamente
     - retorna respostas no formato MCP-like
  */
-app.MapPost("/api/mcp/ollama/weather", async (AskRequest req, McpClientOllama mcp) =>
+app.MapPost("/api/mcp/ollama", async (AskRequest req, McpClientOllama mcp) =>
 {
-    var answer = await mcp.CallWeatherAsync(req.Question);
+    string question = req.Question.ToLower();
+    string method = string.Empty;
+    string answer = string.Empty;
+
+    //--> Regra simples e básica para um roteamento
+    //--> Serve apenas para demonstrar que é possível rotear o tipo de pergunta para um enpoint específico
+    //--> Pode e deve-se criar um "RouterTool" mas elaborado
+    if (question.Contains("clima") || question.Contains("tempo") || question.Contains("chuva")
+    || question.Contains("vento") || question.Contains("previsão") || question.Contains("temperatura")
+    || question.Contains("frio") || question.Contains("calor")) { answer = await mcp.CallAgentAIAsync("weather", req.Question); }
+    //--//
+    if (question.Contains("erro") || question.Contains("código") || question.Contains("programação")
+    || question.Contains("c#") || question.Contains("desenvolvimento") || question.Contains("linguagens")) { answer = await mcp.CallAgentAIAsync("developer", req.Question); }
+    //--//
+    else { answer = await mcp.CallAgentAIAsync("general", req.Question); }
+    //--//
     return new { answer };
 }); 
 #endregion
