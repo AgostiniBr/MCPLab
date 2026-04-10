@@ -1,10 +1,13 @@
 ﻿// ------------------------------
+// ETAPA 1 (Obter a pergunta e mandar para api)
+// ETAPA 2 IR PARA O ARQUIVO -> MCPLab.Api.Program.cs
+// ------------------------------
+
+// ------------------------------
 // Enviar pergunta
 // ------------------------------
 document.getElementById("btnAsk").addEventListener("click", ask);
 async function ask() {
-    //const url = "http://localhost:5044/api/ask";
-    const myurl = "http://localhost:5044/api/mcp/weather";
     const mycity = document.getElementById("DdlCity").value;
     const myquestion = document.getElementById("question").value;
     //--//
@@ -16,6 +19,7 @@ async function ask() {
 
     //#region Chamar a API sem MCP - Ollama
     //if (myquestion !== '' && mycity !== '') {
+    //const url = "http://localhost:5044/api/ask";
     //const res = await fetch(myurl, {
     //    method: "POST",
     //    headers: { "Content-Type": "application/json" },
@@ -29,6 +33,7 @@ async function ask() {
 
     //#region Chamar a API com MCP - Ollama
     if (myquestion !== '') {
+        const myurl = "http://localhost:5044/api/mcp/ollama/weather";
         const res = await fetch(myurl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

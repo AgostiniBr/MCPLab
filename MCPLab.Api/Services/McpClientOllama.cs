@@ -1,5 +1,23 @@
-﻿using System.Text.Json;
+﻿// ------------------------------
+// ETAPA 3 -> essa etapa existe pois até o momento (04/2026)
+// -> não existe um SDK oficial da Microsoft para o MCP
+// -> devido a isso é necessário criar um MCP-like Server “compatível”
+// -> usando Minimal API + JSON-RPC + Tools (com "Description" e "Parâmetros") + Cache + Ollama
+// -> a estrutura do projeto como um todo será assim
+// -> MCPLab.McpServer/
+// ->   Program.cs
+// ->     Tools/
+// ->       WeatherTool.cs
+// ->     Services/
+// ->       OllamaClient.cs
+// ->     Models/
+// ->       RpcRequest.cs
+// ->       RpcResponse.cs
 
+// ETAPA 4 IR PARA O ARQUIVO -> MCPLab.McpServer.Ollama.Program.cs
+// ------------------------------
+
+using System.Text.Json;
 namespace MCPLab.Api.Services
 {
     public class McpClientOllama

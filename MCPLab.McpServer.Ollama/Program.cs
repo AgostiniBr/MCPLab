@@ -1,3 +1,8 @@
+// ------------------------------
+// ETAPA 4 
+// ETAPA 5 IR PARA O ARQUIVO -> MCPLab.Api.Services.Ollama.Tools.ToolRegistry.cs
+// ------------------------------
+
 using MCPLab.McpServer.Ollama.Models;
 using MCPLab.McpServer.Ollama.Services;
 using MCPLab.McpServer.Ollama.Tools;

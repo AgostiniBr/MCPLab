@@ -1,3 +1,8 @@
+// ------------------------------
+// ETAPA 2 (Obter a pergunta e mandar para api Ollama)
+// ETAPA 3 IR PARA O ARQUIVO -> MCPLab.Api.Services.McpClientOllama.cs
+// ------------------------------
+
 using MCPLab.Api.Services;
 
 //--> Init Builder
@@ -6,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 //--> Dependency Injection
 //builder.Services.AddHttpClient<McpClient>();
 
-//--> Dependency Injection
+//--> Dependency Injection for Ollama
 builder.Services.AddHttpClient<McpClientOllama>(c =>
 {
     c.BaseAddress = new Uri("http://localhost:5005"); // Porta do MCP-like Server
@@ -29,23 +34,30 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("AllowWeb");
 
-//--> Endpoint MCP interno
+#region Endpoint MCP Simples
+//--> Descomentar esse código caso não for usar o Ollama ou outro agente
 //app.MapPost("/api/ask", async (AskRequest req, McpClient mcp) =>
 //{
 //    var answer = await mcp.CallToolAsync("route-weather", req.Question);
 //    return new { answer };
-//});
+//}); 
+#endregion
 
-//--> Endpoint MCP Ollama
-app.MapPost("/api/mcp/weather", async (AskRequest req, McpClientOllama mcp) =>
+#region Endpoint MCP Ollama
+/* Este servidor:
+    - expõe /mcp via POST (JSON-RPC)
+    - registra ferramentas
+    - executa ferramentas dinamicamente
+    - retorna respostas no formato MCP-like
+ */
+app.MapPost("/api/mcp/ollama/weather", async (AskRequest req, McpClientOllama mcp) =>
 {
     var answer = await mcp.CallWeatherAsync(req.Question);
     return new { answer };
-});
+}); 
+#endregion
 
 //--> Run app
 app.Run();
 
-#region INTERNAL METHOD
-record AskRequest(string Question); 
-#endregion
+record AskRequest(string Question);

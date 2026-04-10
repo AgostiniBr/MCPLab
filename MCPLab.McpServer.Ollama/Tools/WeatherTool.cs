@@ -1,4 +1,9 @@
-﻿using MCPLab.McpServer.Ollama.Models;
+﻿// ------------------------------
+// ETAPA 6 -> Método InvokeAync que com a ferramenta WeatherTool com cache + Ollama
+// ETAPA 7 -> Retorna a resposta do agente
+// ------------------------------
+
+using MCPLab.McpServer.Ollama.Models;
 using MCPLab.McpServer.Ollama.Services;
 using Microsoft.Extensions.Caching.Memory;
 using System.ComponentModel;
@@ -18,7 +23,6 @@ namespace MCPLab.McpServer.Ollama.Tools
             _cache = cache;
             _ollama = ollama;
         }
-
 
         //--> Method Invoke Async
         [Description("Responde perguntas sobre clima usando phi3 local e mantém cache.")]

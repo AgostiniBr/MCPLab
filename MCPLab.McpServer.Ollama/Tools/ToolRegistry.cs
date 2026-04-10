@@ -1,4 +1,9 @@
-﻿using MCPLab.McpServer.Ollama.Models;
+﻿// ------------------------------
+// ETAPA 5 -> Cria o Registro de ferramentas, e métodos para a chamada do MCP
+// ETAPA 6 IR PARA O ARQUIVO -> MCPLab.Api.Services.Ollama.Tools.WeatherTool.cs
+// ------------------------------
+
+using MCPLab.McpServer.Ollama.Models;
 using System.Reflection;
 
 namespace MCPLab.McpServer.Ollama.Tools
