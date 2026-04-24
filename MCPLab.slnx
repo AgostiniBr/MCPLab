@@ -10,6 +10,7 @@
     <Project Path="MCPLab.McpServer/MCPLab.McpServer.csproj" />
   </Folder>
   <Folder Name="/docs/">
+    <File Path=".gitkeep" />
     <File Path="agradecimentos.md" />
     <File Path="arquitetura.md" />
     <File Path="como-rodar.md" />
