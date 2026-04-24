@@ -1,0 +1,4 @@
+theme: jekyll-theme-cayman
+title: MCPLab
+description: Exemplo básico de servidor MCP com .NET + Ollama
+show_downloads: false
