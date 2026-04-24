@@ -1,10 +1,8 @@
-# MCPLab — Exemplo Básico de Servidor MCP
-
-Bem-vindo ao site oficial do **MCPLab**, um projeto criado para ensinar de forma simples e acessível como funciona a integração entre:
-
-**Frontend → API → MCP → Modelo de IA → API externa**
-
-Este site é uma versão expandida e organizada do README original.
+🌐 MCPLab — Exemplo Básico de Servidor MCP com .NET + Ollama
+<br/>Este projeto demonstra uma estrutura BÁSICA para entender como utilizar um servidor MCP (Model Context Protocol) integrado a uma API e a modelos de IA locais, como o Ollama.
+<br/>O objetivo é ensinar, de forma simples e acessível, como funciona o fluxo completo:
+<br/>Frontend → API → MCP → Modelo de IA → API externa (clima)
+<br/>Ideal para iniciantes que querem aprender arquitetura limpa, camadas desacopladas e integração com IA.
 
 ---
 
@@ -37,14 +35,14 @@ Este site é uma versão expandida e organizada do README original.
 
 ## 🧱 Estrutura da Solution
 
-MCPLab
-│
-├── Apresentacao
-│     ├── MCPLab.Web
-│     └── MCPLab.WinForms
-│
-├── API
-│     └── MCPLab.Api
-│
-└── MCP
-└── MCPLab.McpServer
+<br/>MCPLab
+<br/>│
+<br/>├── Apresentacao
+<br/>│     ├── MCPLab.Web (HTML puro)
+<br/>│     └── MCPLab.WinForms (opcional futuramente)
+<br/>│
+<br/>├── API
+<br/>│     └── MCPLab.Api (ASP.NET Core)
+<br/>│
+<br/>└── MCP
+<br/>&emsp;&emsp;&emsp;&emsp;└── MCPLab.McpServer (.NET MCP Server)
