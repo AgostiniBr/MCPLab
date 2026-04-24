@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿// ------------------------------
+// ETAPA 7 -> (Método GenerateAsync que faz a chamada para o modelo phi3 local usando Ollama)
+// ------------------------------
 
 namespace MCPLab.McpServer.Ollama.Services
 {

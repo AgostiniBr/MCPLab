@@ -1,6 +1,6 @@
 ﻿// ------------------------------
-// ETAPA 3 -> essa etapa existe pois até o momento (04/2026)
-// -> não existe um SDK oficial da Microsoft para o MCP
+// ETAPA 3 -> essa etapa existe pois não utilizei o
+// -> SDK ModelContextProtocol da empresa Anthropic - existe no NUGET
 // -> devido a isso é necessário criar um MCP-like Server “compatível”
 // -> usando Minimal API + JSON-RPC + Tools (com "Description" e "Parâmetros") + Cache + Ollama
 // -> a estrutura do projeto como um todo será assim

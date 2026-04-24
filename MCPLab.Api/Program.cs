@@ -58,7 +58,9 @@ app.MapPost("/api/mcp/ollama", async (AskRequest req, McpClientOllama mcp) =>
 
     //--> Regra simples e básica para um roteamento
     //--> Serve apenas para demonstrar que é possível rotear o tipo de pergunta para um enpoint específico
-    //--> Pode e deve-se criar um "RouterTool" mas elaborado
+    //--> PODE E DEVE-SE criar um "RouterTool" mais elaborado
+    //--> A chamada await mcp.CallAgentAIAsync requer um parâmetro "method" que é o nome da ferramenta que deve ser chamada, e o parâmetro "question" que é a pergunta do usuário
+    //--> Cada "method" deve corresponder a uma classe do tipo Tool que foi registrada no MCP-like Server (WeatherTool, GeneralTool, DeveloperTool)
     if (question.Contains("clima") || question.Contains("tempo") || question.Contains("chuva")
     || question.Contains("vento") || question.Contains("previsão") || question.Contains("temperatura")
     || question.Contains("frio") || question.Contains("calor")) { answer = await mcp.CallAgentAIAsync("weather", req.Question); }

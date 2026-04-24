@@ -1,6 +1,6 @@
 ﻿// ------------------------------
 // ETAPA 6 -> (Método InvokeAync que com a ferramenta WeatherTool com cache + Ollama)
-// ETAPA 7 -> Retorna a resposta do agente
+// ETAPA 7 IR PARA O ARQUIVO ->  MCPLab.McpServer.Ollama.Services.OllamaClient.cs
 // ------------------------------
 
 using MCPLab.McpServer.Ollama.Models;

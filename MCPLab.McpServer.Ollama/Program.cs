@@ -1,6 +1,6 @@
 // ------------------------------
 // ETAPA 4 (enviar para o Endpoint MCP-like usando o protocolo JSON-RPC)
-// ETAPA 5 IR PARA O ARQUIVO -> MCPLab.Api.Services.Ollama.Tools.ToolRegistry.cs
+// ETAPA 5 IR PARA O ARQUIVO -> MCPLab.McpServer.Ollama.Tools.ToolRegistry.cs
 // ------------------------------
 
 using MCPLab.McpServer.Ollama.Models;
