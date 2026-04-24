@@ -9,4 +9,14 @@
     <Project Path="MCPLab.McpServer.Ollama/MCPLab.McpServer.Ollama.csproj" Id="7926ec5c-1718-4027-b9ed-a3055ad2327b" />
     <Project Path="MCPLab.McpServer/MCPLab.McpServer.csproj" />
   </Folder>
+  <Folder Name="/docs/">
+    <File Path="agradecimentos.md" />
+    <File Path="arquitetura.md" />
+    <File Path="como-rodar.md" />
+    <File Path="index.md" />
+    <File Path="_config.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
 </Solution>
